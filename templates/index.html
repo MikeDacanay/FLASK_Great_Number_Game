@@ -7,5 +7,10 @@
 			<input type='submit' value='Submit'>
 		</form>
 		<h1>{{hint}}</h1>
+		{%if hint=="right on"%}
+		<form action='/'>
+			<input type='submit' value='Play Again'>
+		</form>
+		{%endif%}
 	</body>
 </html>
