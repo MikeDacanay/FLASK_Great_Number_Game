@@ -9,13 +9,18 @@ def index():
 		isinstance(session['random'],int)==True
 	except:
 		session['random']=random.randrange(0, 101)
-	# print session['random']
+	print session['random']
 	return render_template('index.html')
 
 @app.route('/result', methods=['POST'])
 def result():
-	hold=request.form['guess']
-	if session['random']-int(hold)==0:
-		print "hello"
-	return redirect('/')
+	if session['random']==int(request.form['guess']):
+		passhint="right on"
+		session['random']=random.randrange(0, 101)
+	elif session['random']>int(request.form['guess']):
+		passhint="more"
+	elif session['random']<int(request.form['guess']):
+		passhint="less"
+	return render_template('index.html',hint=passhint)
+
 app.run(debug=True)
